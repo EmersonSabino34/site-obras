@@ -88,6 +88,10 @@ export async function updateProfile(id: number, input: ProfileInput & { locale?:
   );
 }
 
+export async function setName(id: number, name: string) {
+  await run("UPDATE users SET name = ? WHERE id = ?", [name, id]);
+}
+
 export async function setPassword(id: number, passwordHash: string, mustChange: boolean) {
   await run("UPDATE users SET password_hash = ?, must_change_password = ? WHERE id = ?", [
     passwordHash,

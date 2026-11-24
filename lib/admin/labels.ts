@@ -58,6 +58,8 @@ const templates: Record<ActivityAction, string> = {
   "client.created_by_admin": "{actor} criou a conta de {client}",
   "client.profile_updated": "{client} atualizou os seus dados",
   "client.password_changed": "{client} alterou a palavra-passe",
+  "admin.password_changed": "{actor} alterou a sua palavra-passe de acesso à gestão",
+  "admin.profile_updated": "{actor} atualizou o seu nome na gestão",
   "client.password_reset": "{actor} gerou uma palavra-passe temporária para {client}",
   "client.deactivated": "{actor} desativou a conta de {client}",
   "client.reactivated": "{actor} reativou a conta de {client}",

@@ -6,8 +6,10 @@ import { useActionState } from "react";
 import { whatsappNumberFor } from "@/lib/admin/labels";
 import {
   addWorkUpdateAction,
+  changeAdminPasswordAction,
   createClientAction,
   resetClientPasswordAction,
+  updateAdminNameAction,
 } from "@/lib/actions/admin";
 
 import { FormMessage, SelectField, TextareaField, TextField } from "../forms";
@@ -206,6 +208,49 @@ export function ResetPasswordForm({
       >
         Repor palavra-passe
       </SubmitButton>
+    </form>
+  );
+}
+
+// ---------------------------------------------------------------- My account (admin)
+
+export function AdminNameForm({ name }: { name: string }) {
+  const [state, action] = useActionState(updateAdminNameAction, undefined);
+  return (
+    <form action={action} className="space-y-5">
+      {state?.message ? <FormMessage tone={state.ok ? "success" : "error"}>{state.message}</FormMessage> : null}
+      <TextField
+        label="Nome"
+        name="name"
+        required
+        autoComplete="name"
+        defaultValue={state?.values?.name ?? name}
+        hint="Aparece no painel e no histórico de atividade."
+        error={state?.errors?.name}
+      />
+      <SubmitButton variant="navy">Guardar nome</SubmitButton>
+    </form>
+  );
+}
+
+export function AdminPasswordForm() {
+  const [state, action] = useActionState(changeAdminPasswordAction, undefined);
+  const e = state?.errors ?? {};
+  return (
+    <form action={action} className="space-y-5" noValidate>
+      {state?.message ? <FormMessage tone={state.ok ? "success" : "error"}>{state.message}</FormMessage> : null}
+      <TextField label="Palavra-passe atual" name="current_password" type="password" autoComplete="current-password" required error={e.current_password} />
+      <TextField
+        label="Nova palavra-passe"
+        name="password"
+        type="password"
+        autoComplete="new-password"
+        required
+        hint="Mínimo de 10 caracteres. Use uma frase ou combinação que só a sua equipa conheça."
+        error={e.password}
+      />
+      <TextField label="Confirmar nova palavra-passe" name="password_confirm" type="password" autoComplete="new-password" required error={e.password_confirm} />
+      <SubmitButton variant="primary">Alterar palavra-passe</SubmitButton>
     </form>
   );
 }

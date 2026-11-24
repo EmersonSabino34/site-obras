@@ -4,8 +4,8 @@ import { refresh } from "next/cache";
 import { redirect } from "next/navigation";
 
 import { requestStatusLabel, workStatusLabel } from "@/lib/admin/labels";
-import { generateTemporaryPassword, hashPassword } from "@/lib/auth/password";
-import { destroyAllSessions, requireAdmin } from "@/lib/auth/session";
+import { generateTemporaryPassword, hashPassword, verifyPassword } from "@/lib/auth/password";
+import { createSession, destroyAllSessions, requireAdmin } from "@/lib/auth/session";
 import { logActivity } from "@/lib/data/activity";
 import { getQuote, saveQuote, transitionQuote } from "@/lib/data/quotes";
 import { getRequest, setRequestStatus } from "@/lib/data/requests";
@@ -15,12 +15,22 @@ import {
   type RequestStatus,
   type WorkStatus,
 } from "@/lib/data/types";
-import { createClientUser, emailExists, getUser, setActive, setPassword } from "@/lib/data/users";
+import {
+  createClientUser,
+  emailExists,
+  getPasswordHash,
+  getUser,
+  setActive,
+  setName,
+  setPassword,
+} from "@/lib/data/users";
 import { addWorkUpdate, getWork, setWorkDates, setWorkStatus } from "@/lib/data/works";
 import { formatDate, formatMoney, todayLisbon } from "@/lib/format";
 import { getDictionary } from "@/lib/i18n";
 import {
   adminClientSchema,
+  adminNameSchema,
+  adminPasswordSchema,
   fieldErrors,
   formValues,
   quoteSchema,
@@ -300,4 +310,39 @@ export async function toggleClientActiveAction(formData: FormData) {
     entityId: client.id,
   });
   refresh();
+}
+
+// ---------------------------------------------------------------- My account (admin)
+
+const adminMessages = {
+  ...t,
+  adminPasswordShort: "A palavra-passe deve ter pelo menos 10 caracteres.",
+};
+
+export async function updateAdminNameAction(_prev: FormState, formData: FormData): Promise<FormState> {
+  const admin = await requireAdmin();
+  const parsed = adminNameSchema.safeParse(Object.fromEntries(formData));
+  if (!parsed.success) return { errors: fieldErrors(parsed.error, adminMessages), values: formValues(formData) };
+  await setName(admin.id, parsed.data.name);
+  await logActivity({ actorId: admin.id, action: "admin.profile_updated" });
+  refresh();
+  return { ok: true, message: "Nome guardado.", values: formValues(formData) };
+}
+
+export async function changeAdminPasswordAction(_prev: FormState, formData: FormData): Promise<FormState> {
+  const admin = await requireAdmin();
+  const parsed = adminPasswordSchema.safeParse(Object.fromEntries(formData));
+  if (!parsed.success) return { errors: fieldErrors(parsed.error, adminMessages, formData) };
+
+  const current = await getPasswordHash(admin.id);
+  if (!current || !(await verifyPassword(parsed.data.current_password, current.password_hash))) {
+    return { errors: { current_password: t.wrongPassword } };
+  }
+  await setPassword(admin.id, await hashPassword(parsed.data.password), false);
+  // End sessions on other devices; keep this one signed in.
+  await destroyAllSessions(admin.id);
+  await createSession(admin.id);
+  await logActivity({ actorId: admin.id, action: "admin.password_changed" });
+  refresh();
+  return { ok: true, message: "Palavra-passe alterada. As sessões noutros aparelhos foram terminadas." };
 }

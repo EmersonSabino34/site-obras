@@ -7,6 +7,7 @@ export const ADMIN_NAV = [
   { href: "/admin/obras", label: "Obras", icon: "hammer" },
   { href: "/admin/clientes", label: "Clientes", icon: "users" },
   { href: "/admin/atividade", label: "Histórico", icon: "clock" },
+  { href: "/admin/conta", label: "A minha conta", icon: "user" },
 ] as const;
 
 const paths: Record<(typeof ADMIN_NAV)[number]["icon"], string> = {
@@ -18,6 +19,7 @@ const paths: Record<(typeof ADMIN_NAV)[number]["icon"], string> = {
   users:
     "M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75",
   clock: "M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20ZM12 6v6l4 2",
+  user: "M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM4 21a8 8 0 0 1 16 0",
 };
 
 export function AdminNavIcon({

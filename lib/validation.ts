@@ -151,6 +151,19 @@ export const quoteSchema = z.object({
     .max(200),
 });
 
+export const adminNameSchema = z.object({ name });
+
+export const adminPasswordSchema = z
+  .object({
+    current_password: z.string().min(1, "required"),
+    password: z.string().min(10, "adminPasswordShort").max(200, "tooLong"),
+    password_confirm: z.string(),
+  })
+  .refine((data) => data.password === data.password_confirm, {
+    message: "passwordMismatch",
+    path: ["password_confirm"],
+  });
+
 export const workDatesSchema = z.object({
   start_date: isoDate,
   end_date: isoDate,

@@ -7,6 +7,8 @@ export type ActivityAction =
   | "client.created_by_admin"
   | "client.profile_updated"
   | "client.password_changed"
+  | "admin.password_changed"
+  | "admin.profile_updated"
   | "client.password_reset"
   | "client.deactivated"
   | "client.reactivated"

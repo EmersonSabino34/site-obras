@@ -11,10 +11,10 @@ async function CurrentAdmin() {
   const user = await getSessionUser();
   if (!user) return null;
   return (
-    <div className="min-w-0">
+    <Link href="/admin/conta" className="block min-w-0 rounded-lg hover:opacity-80" title="A minha conta">
       <p className="truncate text-sm font-semibold text-white">{user.name}</p>
       <p className="truncate text-xs text-slate-400">{user.email}</p>
-    </div>
+    </Link>
   );
 }
 
