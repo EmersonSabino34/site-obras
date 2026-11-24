@@ -1,36 +1,38 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# HENPROTRUST — site institucional
 
-## Getting Started
+Site bilingue (português de Portugal e inglês) da HENPROTRUST — construção, remodelação e manutenção de edifícios na Região Oeste.
 
-First, run the development server:
+- `/pt` — Português (predefinido)
+- `/en` — English
+- `/` redireciona automaticamente conforme o idioma do browser e lembra a última escolha.
+
+## Correr localmente
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abrir <http://localhost:3000>.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Onde editar
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| O quê | Ficheiro |
+| --- | --- |
+| Telefone, WhatsApp, email, localidades | `lib/site.ts` |
+| Textos em português | `lib/dictionaries/pt.ts` |
+| Textos em inglês | `lib/dictionaries/en.ts` |
+| Cores da marca | `app/globals.css` (bloco `@theme`) |
+| Logótipo (SVG) | `components/logo.tsx` e `app/icon.svg` |
+| Secções da página | `components/sections/` |
 
-## Learn More
+Os dois ficheiros de textos têm de manter a mesma estrutura (o TypeScript avisa se faltar algum texto em inglês).
 
-To learn more about Next.js, take a look at the following resources:
+## Publicar
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Definir a variável de ambiente `SITE_URL` com o domínio final, por exemplo `https://www.henprotrust.pt`. É usada nos links canónicos, no `sitemap.xml` e na imagem de partilha (WhatsApp, Facebook, LinkedIn).
+2. `npm run build` e `npm start`, ou importar o projeto na Vercel (lá o `SITE_URL` é detetado automaticamente se não for definido).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Formulário de contacto
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+O formulário não guarda dados nem precisa de servidor de email: abre o WhatsApp (ou o programa de email) com a mensagem já preenchida para +351 912 866 284.
