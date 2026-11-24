@@ -189,20 +189,13 @@ export function InfoIcon(props: IconProps) {
   );
 }
 
-export function InstagramIcon(props: IconProps) {
+export function ShareIcon(props: IconProps) {
   return (
     <Stroke {...props}>
-      <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-      <path d="M17.5 6.5h.01" />
-    </Stroke>
-  );
-}
-
-export function FacebookIcon(props: IconProps) {
-  return (
-    <Stroke {...props}>
-      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+      <circle cx="18" cy="5" r="3" />
+      <circle cx="6" cy="12" r="3" />
+      <circle cx="18" cy="19" r="3" />
+      <path d="m8.59 13.51 6.83 3.98M15.41 6.51l-6.82 3.98" />
     </Stroke>
   );
 }
