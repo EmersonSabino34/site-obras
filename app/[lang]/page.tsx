@@ -32,6 +32,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
     description: dict.meta.description,
     telephone: site.phoneHref.replace("tel:", ""),
     email: site.email,
+    sameAs: site.social.map((network) => network.url),
     inLanguage: htmlLang[lang],
     address: {
       "@type": "PostalAddress",

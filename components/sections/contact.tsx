@@ -4,7 +4,7 @@ import type { Dictionary } from "@/lib/i18n";
 import { site, whatsappLink } from "@/lib/site";
 
 import { ContactForm } from "../contact-form";
-import { MailIcon, MapPinIcon, PhoneIcon, WhatsAppIcon } from "../icons";
+import { FacebookIcon, InstagramIcon, MailIcon, MapPinIcon, PhoneIcon, WhatsAppIcon } from "../icons";
 import { Container, SectionHeading } from "../ui";
 
 function ContactItem({
@@ -71,6 +71,29 @@ export function Contact({ dict }: { dict: Dictionary }) {
               <a href={`mailto:${site.email}`} className={linkClass}>
                 {site.email}
               </a>
+            </ContactItem>
+
+            <ContactItem icon={InstagramIcon} label={contact.socialLabel}>
+              <ul className="space-y-1">
+                {site.social.map((network) => {
+                  const Icon = network.id === "facebook" ? FacebookIcon : InstagramIcon;
+                  return (
+                    <li key={network.id}>
+                      <a
+                        href={network.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`inline-flex items-center gap-2 ${linkClass}`}
+                      >
+                        <Icon className="size-4 shrink-0 text-brand-700" />
+                        {network.name}
+                        <span className="text-base font-normal text-slate-500">{network.handle}</span>
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
+              <p className="mt-1 text-sm text-slate-500">{contact.socialNote}</p>
             </ContactItem>
 
             <ContactItem icon={MapPinIcon} label={contact.areaLabel}>

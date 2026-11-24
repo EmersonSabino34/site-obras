@@ -23,6 +23,11 @@ export const site = {
     "Mafra",
   ],
   complaintsBookUrl: "https://www.livroreclamacoes.pt/Inicio/",
+  /** Social networks shown in the footer and contact section. */
+  social: [
+    { id: "instagram", name: "Instagram", url: "https://www.instagram.com/henprotrust", handle: "@henprotrust" },
+    { id: "facebook", name: "Facebook", url: "https://www.facebook.com/share/1CMtEiMC96/", handle: "HENPROTRUST" },
+  ],
   /** Shown on quotes and in the footer when filled in. */
   legal: {
     companyName: "HENPROTRUST" as string,

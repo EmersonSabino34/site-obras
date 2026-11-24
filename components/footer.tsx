@@ -6,6 +6,7 @@ import { navLinks } from "./header";
 import { MailIcon, PhoneIcon, WhatsAppIcon } from "./icons";
 import { LanguageSwitch } from "./language-switch";
 import { FullLogo } from "./logo";
+import { SocialLinks } from "./social-links";
 import { Container } from "./ui";
 
 async function CurrentYear() {
@@ -26,6 +27,8 @@ export function Footer({ lang, dict }: { lang: Locale; dict: Dictionary }) {
         <div>
           <FullLogo className="w-44" title="HENPROTRUST" />
           <p className="mt-6 max-w-xs leading-relaxed">{footer.tagline}</p>
+          <p className="mt-7 text-xs font-bold uppercase tracking-[0.18em] text-white">{footer.followUs}</p>
+          <SocialLinks className="mt-3" />
         </div>
 
         <nav aria-label={footer.navigation}>
