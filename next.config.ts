@@ -4,6 +4,8 @@ const nextConfig: NextConfig = {
   /* config options here */
   experimental: {
     agentFeedback: true,
+    // Needed because the root layout lives under app/[lang].
+    globalNotFound: true,
   },
   cacheComponents: true,
   partialPrefetching: true,
