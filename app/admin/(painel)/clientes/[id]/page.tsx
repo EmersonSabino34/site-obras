@@ -96,7 +96,7 @@ async function Content({ params }: PageProps<"/admin/clientes/[id]">) {
         <StatCard label="Obras" value={works.length} hint={`${works.filter((w) => w.status === "em_curso").length} em curso`} />
       </div>
 
-      <div className="grid gap-6 xl:grid-cols-[1fr_1fr_1fr]">
+      <div className="grid gap-6 xl:grid-cols-3">
         <div className="space-y-6">
           <Card title="Dados do cliente">
             <InfoList

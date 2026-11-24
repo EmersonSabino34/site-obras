@@ -66,7 +66,7 @@ async function Content({ params }: PageProps<"/admin/orcamentos/[id]">) {
         actions={<PrintButton label="Imprimir / PDF" />}
       />
 
-      <div className="grid gap-6 xl:grid-cols-[1fr_22rem] print:block">
+      <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_22rem] print:block">
         <QuoteDocument quote={quote} locale="pt" labels={pt.quotePage} units={pt.units} />
 
         <div className="space-y-6 print:hidden">

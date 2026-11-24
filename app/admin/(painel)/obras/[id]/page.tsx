@@ -45,7 +45,7 @@ async function Content({ params }: PageProps<"/admin/obras/[id]">) {
         description={`${work.client_name}${work.location ? ` · ${work.location}` : ""}`}
       />
 
-      <div className="grid gap-6 xl:grid-cols-[1.5fr_1fr]">
+      <div className="grid gap-6 xl:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)]">
         <div className="space-y-6">
           <Card title="Publicar atualização">
             <WorkUpdateForm workId={work.id} />

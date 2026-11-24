@@ -177,7 +177,7 @@ export function QuoteEditor({
         {e.items ? <p className="mt-3 text-sm font-medium text-red-600">{e.items}</p> : null}
 
         <div className="mt-5 space-y-3">
-          <div className="hidden grid-cols-[1fr_6rem_8.5rem_8rem_7rem_2.5rem] gap-3 px-1 text-xs font-semibold uppercase tracking-wider text-slate-500 lg:grid">
+          <div className="hidden grid-cols-[minmax(0,1fr)_6rem_9.5rem_8rem_7rem_2.5rem] gap-3 px-1 text-xs font-semibold uppercase tracking-wider text-slate-500 lg:grid">
             <span>Descrição</span>
             <span className="text-right">Qtd.</span>
             <span>Unidade</span>
@@ -188,7 +188,7 @@ export function QuoteEditor({
           {parsed.map(({ row, valid, quantity, unit_price_cents }, index) => (
             <div
               key={row.key}
-              className="grid gap-3 rounded-xl border border-slate-200 p-3 lg:grid-cols-[1fr_6rem_9.5rem_8rem_7rem_2.5rem] lg:items-start lg:border-0 lg:p-0"
+              className="grid gap-3 rounded-xl border border-slate-200 p-3 lg:grid-cols-[minmax(0,1fr)_6rem_9.5rem_8rem_7rem_2.5rem] lg:items-start lg:border-0 lg:p-0"
             >
               <textarea
                 aria-label={`Descrição da linha ${index + 1}`}

@@ -14,6 +14,8 @@ import { getDashboardStats } from "@/lib/data/stats";
 import { listWorks } from "@/lib/data/works";
 import { formatDate, formatMoney, quoteDisplayStatus } from "@/lib/format";
 
+const plural = (count: number, one: string, many: string) => `${count} ${count === 1 ? one : many}`;
+
 export default function AdminDashboardPage() {
   return (
     <Suspense fallback={<PageSkeleton />}>
@@ -89,13 +91,13 @@ async function Dashboard() {
         <StatCard
           label="Valor adjudicado este ano"
           value={formatMoney(stats.accepted_year_cents)}
-          hint={`${stats.quotes_accepted} ${stats.quotes_accepted === 1 ? "orçamento aceite" : "orçamentos aceites"} no total`}
+          hint={`${plural(stats.quotes_accepted, "orçamento aceite", "orçamentos aceites")} no total`}
           href="/admin/orcamentos?estado=aceite"
         />
         <StatCard
           label="Obras em curso"
           value={stats.works_active}
-          hint={`${stats.works_pending} por iniciar · ${stats.works_done} concluídas`}
+          hint={`${stats.works_pending} por iniciar · ${plural(stats.works_done, "concluída", "concluídas")}`}
           href="/admin/obras"
         />
         <StatCard label="Rascunhos por enviar" value={stats.quotes_draft} href="/admin/orcamentos?estado=rascunho" />
@@ -108,17 +110,17 @@ async function Dashboard() {
         <StatCard
           label="Taxa de aceitação"
           value={acceptance === null ? "—" : `${acceptance}%`}
-          hint={`${stats.quotes_accepted} aceites · ${stats.quotes_rejected} recusados`}
+          hint={`${plural(stats.quotes_accepted, "aceite", "aceites")} · ${plural(stats.quotes_rejected, "recusado", "recusados")}`}
         />
         <StatCard
           label="Clientes"
           value={stats.clients_total}
-          hint={`${stats.clients_new_30d} novos nos últimos 30 dias`}
+          hint={`${plural(stats.clients_new_30d, "novo", "novos")} nos últimos 30 dias`}
           href="/admin/clientes"
         />
       </div>
 
-      <div className="mt-8 grid gap-6 xl:grid-cols-[1.2fr_1fr]">
+      <div className="mt-8 grid gap-6 xl:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]">
         <div className="grid gap-6 lg:grid-cols-2 xl:grid-cols-1 2xl:grid-cols-2">
           <Card title="Pedidos novos" action={<Link href="/admin/pedidos" className="text-sm font-semibold text-brand-700">Ver todos</Link>}>
             {newRequests.length === 0 ? (

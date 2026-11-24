@@ -37,7 +37,7 @@ async function Content({ params }: PageProps<"/[lang]/conta/perfil">) {
         <h1 className="font-display text-3xl font-bold text-navy-900">{t.title}</h1>
         <p className="mt-2 text-slate-600">{t.subtitle}</p>
       </div>
-      <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr]">
+      <div className="grid gap-8 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
         <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
           <ProfileForm
             lang={lang}

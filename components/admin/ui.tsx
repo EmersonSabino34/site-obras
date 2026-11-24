@@ -134,7 +134,7 @@ export function InfoList({ items }: { items: { label: string; value: ReactNode }
   return (
     <dl className="divide-y divide-slate-100">
       {items.map((item) => (
-        <div key={item.label} className="grid grid-cols-[8.5rem_1fr] gap-3 py-2.5 text-sm">
+        <div key={item.label} className="grid grid-cols-[7.5rem_minmax(0,1fr)] gap-3 py-2.5 text-sm">
           <dt className="text-slate-500">{item.label}</dt>
           <dd className="min-w-0 break-words font-medium text-navy-900">{item.value ?? "—"}</dd>
         </div>

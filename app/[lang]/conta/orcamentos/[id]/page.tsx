@@ -97,7 +97,7 @@ async function QuoteView({ params, searchParams }: PageProps<"/[lang]/conta/orca
         <Notice tone="gray">{t.rejectedOn.replace("{date}", formatDate(quote.decided_at, lang))}</Notice>
       ) : null}
 
-      <div className="grid gap-8 lg:grid-cols-[1fr_22rem] print:block">
+      <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_22rem] print:block">
         <QuoteDocument
           quote={quote}
           locale={lang}
