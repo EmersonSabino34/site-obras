@@ -16,8 +16,9 @@ import { SCHEMA } from "./schema.mjs";
  *   the Turso integration on the Vercel Marketplace (TURSO_DATABASE_URL /
  *   TURSO_AUTH_TOKEN) also work.
  */
-const url = process.env.DATABASE_URL ?? process.env.TURSO_DATABASE_URL ?? "file:data/henprotrust.db";
-const authToken = process.env.DATABASE_AUTH_TOKEN ?? process.env.TURSO_AUTH_TOKEN;
+// `||` (not `??`) so that empty variables count as missing.
+const url = process.env.DATABASE_URL || process.env.TURSO_DATABASE_URL || "file:data/henprotrust.db";
+const authToken = process.env.DATABASE_AUTH_TOKEN || process.env.TURSO_AUTH_TOKEN;
 
 async function connect(): Promise<Client> {
   if (url.startsWith("file:")) {

@@ -5,8 +5,12 @@
 //
 // Without --password a strong random password is generated and printed once.
 // Uses the same database as the app (DATABASE_URL / DATABASE_AUTH_TOKEN, TURSO_DATABASE_URL /
-// TURSO_AUTH_TOKEN, or the local file). For the Vercel database, load the variables first:
-//   vercel env pull .env.production.local   then   node --env-file=.env.production.local scripts/create-admin.mjs …
+// TURSO_AUTH_TOKEN, or the local file).
+//
+//   npm run admin:create -- --print-hash [--password "…"]
+// only prints the encrypted password, for ADMIN_BOOTSTRAP_PASSWORD_HASH
+// (see scripts/bootstrap-admin.mjs — used on Vercel, where the Turso
+// credentials can't be downloaded).
 
 import { randomBytes, scrypt } from "node:crypto";
 import { mkdirSync } from "node:fs";
@@ -20,11 +24,13 @@ const { values } = parseArgs({
     email: { type: "string" },
     name: { type: "string" },
     password: { type: "string" },
+    "print-hash": { type: "boolean" },
   },
 });
+const printHashOnly = values["print-hash"] === true;
 
 const email = values.email?.trim().toLowerCase();
-if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+if (!printHashOnly && (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))) {
   console.error('Indique um email válido: npm run admin:create -- --email nome@exemplo.pt --name "Nome"');
   process.exit(1);
 }
@@ -45,8 +51,14 @@ const key = await new Promise((resolve, reject) =>
 );
 const hash = ["scrypt", N, R, P, salt.toString("base64"), key.toString("base64")].join("$");
 
-const url = process.env.DATABASE_URL ?? process.env.TURSO_DATABASE_URL ?? "file:data/henprotrust.db";
-const authToken = process.env.DATABASE_AUTH_TOKEN ?? process.env.TURSO_AUTH_TOKEN;
+if (printHashOnly) {
+  if (!values.password) console.log(`Palavra-passe gerada (guarde-a agora): ${password}`);
+  console.log(`ADMIN_BOOTSTRAP_PASSWORD_HASH=${hash}`);
+  process.exit(0);
+}
+
+const url = process.env.DATABASE_URL || process.env.TURSO_DATABASE_URL || "file:data/henprotrust.db";
+const authToken = process.env.DATABASE_AUTH_TOKEN || process.env.TURSO_AUTH_TOKEN;
 if (url.startsWith("file:")) mkdirSync(path.dirname(path.resolve(url.slice(5))), { recursive: true });
 console.log(`Base de dados: ${url.startsWith("file:") ? url : url.replace(/^(libsql:\/\/[^.]+).*/, "$1…")}`);
 const db = createClient({ url, authToken });
