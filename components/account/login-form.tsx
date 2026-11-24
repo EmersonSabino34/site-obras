@@ -11,10 +11,12 @@ export function LoginForm({
   lang,
   scope = "client",
   labels,
+  passwordLabels,
 }: {
   lang: string;
   scope?: "client" | "admin";
   labels: { email: string; password: string; submit: string };
+  passwordLabels?: { show: string; hide: string };
 }) {
   const [state, action] = useActionState(loginAction, undefined);
 
@@ -39,6 +41,7 @@ export function LoginForm({
         type="password"
         autoComplete="current-password"
         required
+        passwordLabels={passwordLabels}
         error={state?.errors?.password}
       />
       <SubmitButton className="w-full py-3 text-base">{labels.submit}</SubmitButton>

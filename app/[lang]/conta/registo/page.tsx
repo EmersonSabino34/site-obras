@@ -27,6 +27,7 @@ export default async function RegisterPage({ params }: PageProps<"/[lang]/conta/
         clientTypes={dict.form.clientTypes}
         selectLabel={dict.form.select}
         privacyLabel={dict.privacyLink}
+        passwordLabels={dict.account.passwordToggle}
       />
       <p className="mt-8 border-t border-slate-200 pt-6 text-sm text-slate-600">
         {t.haveAccount}{" "}

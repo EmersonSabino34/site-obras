@@ -271,6 +271,7 @@ export const en: Dictionary = {
   privacyLink: "Privacy Policy",
   account: {
     area: "Client area",
+    passwordToggle: { show: "Show password", hide: "Hide password" },
     login: "Log in",
     register: "Create account",
     logout: "Log out",

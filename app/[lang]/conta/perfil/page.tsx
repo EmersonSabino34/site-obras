@@ -55,7 +55,7 @@ async function Content({ params }: PageProps<"/[lang]/conta/perfil">) {
         >
           <h2 className="font-display text-xl font-bold text-navy-900">{t.passwordTitle}</h2>
           <div className="mt-6">
-            <PasswordForm lang={lang} labels={{ ...t, passwordHint: r.passwordHint }} />
+            <PasswordForm lang={lang} labels={{ ...t, passwordHint: r.passwordHint }} passwordLabels={dict.account.passwordToggle} />
           </div>
         </section>
       </div>

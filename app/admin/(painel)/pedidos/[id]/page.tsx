@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
 import { Card, InfoList, linkButton, PageHeader } from "@/components/admin/ui";
-import { inputClass } from "@/components/forms";
+import { inputBase } from "@/components/forms";
 import { WhatsAppIcon } from "@/components/icons";
 import { PageSkeleton } from "@/components/skeleton";
 import { StatusBadge } from "@/components/status-badge";
@@ -121,7 +121,7 @@ async function Content({ params }: PageProps<"/admin/pedidos/[id]">) {
               <label htmlFor="request-status" className="sr-only">
                 Estado
               </label>
-              <select id="request-status" name="status" defaultValue={request.status} className={`${inputClass} mt-0`}>
+              <select id="request-status" name="status" defaultValue={request.status} className={inputBase}>
                 {REQUEST_STATUSES.map((status) => (
                   <option key={status} value={status}>
                     {requestStatusLabel[status]}

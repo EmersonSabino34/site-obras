@@ -105,7 +105,11 @@ export async function loginAction(_prev: FormState, formData: FormData): Promise
 
   const user = await findUserForLogin(email);
   // Always run the hash check so response time doesn't reveal whether the email exists.
-  const valid = await verifyPassword(password, user?.password_hash ?? DUMMY_HASH);
+  // Spaces accidentally copied around the password (e.g. from WhatsApp) are forgiven.
+  const storedHash = user?.password_hash ?? DUMMY_HASH;
+  const valid =
+    (await verifyPassword(password, storedHash)) ||
+    (password.trim() !== password && (await verifyPassword(password.trim(), storedHash)));
   const allowed = user && valid && user.active === 1 && (scope === "client" || user.role === "admin");
 
   await recordLoginAttempt(email, Boolean(allowed));

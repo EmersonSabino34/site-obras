@@ -4,7 +4,7 @@ import { Suspense } from "react";
 
 import { WorkUpdateForm } from "@/components/admin/admin-forms";
 import { Card, InfoList, linkButton, PageHeader } from "@/components/admin/ui";
-import { inputClass } from "@/components/forms";
+import { inputBase, inputClass } from "@/components/forms";
 import { WhatsAppIcon } from "@/components/icons";
 import { PageSkeleton } from "@/components/skeleton";
 import { StatusBadge } from "@/components/status-badge";
@@ -84,7 +84,7 @@ async function Content({ params }: PageProps<"/admin/obras/[id]">) {
               <label htmlFor="work-status" className="sr-only">
                 Estado
               </label>
-              <select id="work-status" name="status" defaultValue={work.status} className={`${inputClass} mt-0`}>
+              <select id="work-status" name="status" defaultValue={work.status} className={inputBase}>
                 {WORK_STATUSES.map((status) => (
                   <option key={status} value={status}>
                     {workStatusLabel[status]}

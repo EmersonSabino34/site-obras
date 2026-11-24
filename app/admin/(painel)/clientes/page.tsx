@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Suspense } from "react";
 
 import { EmptyState, linkButton, PageHeader, table } from "@/components/admin/ui";
-import { inputClass } from "@/components/forms";
+import { inputBase } from "@/components/forms";
 import { PageSkeleton } from "@/components/skeleton";
 import { StatusBadge } from "@/components/status-badge";
 import { requireAdmin } from "@/lib/auth/session";
@@ -48,7 +48,7 @@ async function Content({ searchParams }: PageProps<"/admin/clientes">) {
           type="search"
           defaultValue={search}
           placeholder="Procurar por nome, email, telefone, empresa ou NIF"
-          className={`${inputClass} mt-0`}
+          className={inputBase}
         />
         <button type="submit" className={linkButton.navy}>
           Procurar

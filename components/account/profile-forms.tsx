@@ -78,8 +78,10 @@ export function ProfileForm({
 export function PasswordForm({
   lang,
   labels,
+  passwordLabels,
 }: {
   lang: string;
+  passwordLabels?: { show: string; hide: string };
   labels: {
     currentPassword: string;
     newPassword: string;
@@ -97,9 +99,9 @@ export function PasswordForm({
       {state?.message ? (
         <FormMessage tone={state.ok ? "success" : "error"}>{state.message}</FormMessage>
       ) : null}
-      <TextField label={labels.currentPassword} name="current_password" type="password" autoComplete="current-password" required error={e.current_password} />
-      <TextField label={labels.newPassword} name="password" type="password" autoComplete="new-password" required hint={labels.passwordHint} error={e.password} />
-      <TextField label={labels.confirmPassword} name="password_confirm" type="password" autoComplete="new-password" required error={e.password_confirm} />
+      <TextField label={labels.currentPassword} name="current_password" type="password" autoComplete="current-password" required passwordLabels={passwordLabels} error={e.current_password} />
+      <TextField label={labels.newPassword} name="password" type="password" autoComplete="new-password" required hint={labels.passwordHint} passwordLabels={passwordLabels} error={e.password} />
+      <TextField label={labels.confirmPassword} name="password_confirm" type="password" autoComplete="new-password" required passwordLabels={passwordLabels} error={e.password_confirm} />
       <SubmitButton variant="navy">{labels.changePassword}</SubmitButton>
     </form>
   );

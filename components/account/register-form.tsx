@@ -31,8 +31,10 @@ export function RegisterForm({
   clientTypes,
   selectLabel,
   privacyLabel,
+  passwordLabels,
 }: {
   lang: string;
+  passwordLabels?: { show: string; hide: string };
   labels: Labels;
   clientTypes: string[];
   selectLabel: string;
@@ -64,8 +66,8 @@ export function RegisterForm({
         <TextField label={labels.nif} name="nif" optionalLabel={labels.optional} defaultValue={v.nif} error={e.nif} />
         <TextField label={labels.city} name="city" autoComplete="address-level2" optionalLabel={labels.optional} defaultValue={v.city} error={e.city} />
         <TextField className="sm:col-span-2" label={labels.address} name="address" autoComplete="street-address" optionalLabel={labels.optional} defaultValue={v.address} error={e.address} />
-        <TextField label={labels.password} name="password" type="password" autoComplete="new-password" required hint={labels.passwordHint} error={e.password} />
-        <TextField label={labels.passwordConfirm} name="password_confirm" type="password" autoComplete="new-password" required error={e.password_confirm} />
+        <TextField label={labels.password} name="password" type="password" autoComplete="new-password" required hint={labels.passwordHint} passwordLabels={passwordLabels} error={e.password} />
+        <TextField label={labels.passwordConfirm} name="password_confirm" type="password" autoComplete="new-password" required passwordLabels={passwordLabels} error={e.password_confirm} />
       </div>
 
       <div>

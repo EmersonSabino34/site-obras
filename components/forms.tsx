@@ -1,7 +1,14 @@
 import type { ReactNode } from "react";
 
-export const inputClass =
-  "mt-1.5 block w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-navy-900 shadow-xs transition placeholder:text-slate-400 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/15 focus:outline-none aria-[invalid=true]:border-red-500 aria-[invalid=true]:focus:ring-red-500/15 disabled:bg-slate-100";
+import { PasswordInput } from "./password-input";
+
+/** Input styles without margin (for inputs inside wrappers). */
+export const inputBase =
+  "block w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-navy-900 shadow-xs transition placeholder:text-slate-400 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/15 focus:outline-none aria-[invalid=true]:border-red-500 aria-[invalid=true]:focus:ring-red-500/15 disabled:bg-slate-100";
+
+export const inputClass = `mt-1.5 ${inputBase}`;
+
+const DEFAULT_PASSWORD_LABELS = { show: "Mostrar palavra-passe", hide: "Ocultar palavra-passe" };
 
 type BaseProps = {
   label: string;
@@ -59,6 +66,7 @@ export function TextField({
   inputMode,
   min,
   max,
+  passwordLabels = DEFAULT_PASSWORD_LABELS,
 }: BaseProps & {
   type?: string;
   defaultValue?: string | null;
@@ -67,8 +75,32 @@ export function TextField({
   inputMode?: "text" | "email" | "tel" | "numeric" | "decimal";
   min?: string;
   max?: string;
+  /** Accessible labels for the show/hide button of password fields. */
+  passwordLabels?: { show: string; hide: string };
 }) {
   const id = `field-${name}`;
+  const describedBy = error || hint ? `${id}-help` : undefined;
+
+  if (type === "password") {
+    return (
+      <div className={className}>
+        <Label htmlFor={id} label={label} required={required} optionalLabel={optionalLabel} />
+        <PasswordInput
+          id={id}
+          name={name}
+          required={required}
+          autoComplete={autoComplete}
+          invalid={Boolean(error)}
+          describedBy={describedBy}
+          className={inputBase}
+          labels={passwordLabels}
+        />
+        <Help id={`${id}-help`} error={error} hint={hint} />
+      </div>
+    );
+  }
+
+  const noAutoCorrect = type === "email";
   return (
     <div className={className}>
       <Label htmlFor={id} label={label} required={required} optionalLabel={optionalLabel} />
@@ -83,8 +115,11 @@ export function TextField({
         inputMode={inputMode}
         min={min}
         max={max}
+        autoCapitalize={noAutoCorrect ? "none" : undefined}
+        autoCorrect={noAutoCorrect ? "off" : undefined}
+        spellCheck={noAutoCorrect ? false : undefined}
         aria-invalid={error ? true : undefined}
-        aria-describedby={error || hint ? `${id}-help` : undefined}
+        aria-describedby={describedBy}
         className={inputClass}
       />
       <Help id={`${id}-help`} error={error} hint={hint} />

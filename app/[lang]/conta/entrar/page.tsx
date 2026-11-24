@@ -23,7 +23,7 @@ export default async function LoginPage({ params }: PageProps<"/[lang]/conta/ent
 
   return (
     <AuthShell dict={dict} title={t.title} subtitle={t.subtitle}>
-      <LoginForm lang={lang} labels={t} />
+      <LoginForm lang={lang} labels={t} passwordLabels={dict.account.passwordToggle} />
       <div className="mt-8 space-y-5 border-t border-slate-200 pt-6 text-sm text-slate-600">
         <p>
           {t.noAccount}{" "}

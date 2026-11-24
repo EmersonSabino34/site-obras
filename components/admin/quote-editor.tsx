@@ -6,7 +6,7 @@ import { saveQuoteAction } from "@/lib/actions/admin";
 import type { Unit } from "@/lib/data/types";
 import { formatMoney, lineTotalCents, parseDecimal } from "@/lib/format";
 
-import { FormMessage, inputClass, SelectField, TextareaField, TextField } from "../forms";
+import { FormMessage, inputBase, inputClass, SelectField, TextareaField, TextField } from "../forms";
 import { CloseIcon } from "../icons";
 import { SubmitButton } from "../submit-button";
 
@@ -196,20 +196,20 @@ export function QuoteEditor({
                 onChange={(event) => update(row.key, { description: event.target.value })}
                 rows={1}
                 placeholder="Descrição do trabalho"
-                className={`${inputClass} mt-0 min-h-[2.75rem] resize-y`}
+                className={`${inputBase} min-h-[2.75rem] resize-y`}
               />
               <input
                 aria-label={`Quantidade da linha ${index + 1}`}
                 inputMode="decimal"
                 value={row.quantity}
                 onChange={(event) => update(row.key, { quantity: event.target.value })}
-                className={`${inputClass} mt-0 text-right tabular-nums`}
+                className={`${inputBase} text-right tabular-nums`}
               />
               <select
                 aria-label={`Unidade da linha ${index + 1}`}
                 value={row.unit}
                 onChange={(event) => update(row.key, { unit: event.target.value as Unit })}
-                className={`${inputClass} mt-0`}
+                className={`${inputBase}`}
               >
                 {units.map((unit) => (
                   <option key={unit.value} value={unit.value}>
@@ -223,7 +223,7 @@ export function QuoteEditor({
                 value={row.price}
                 placeholder="0,00"
                 onChange={(event) => update(row.key, { price: event.target.value })}
-                className={`${inputClass} mt-0 text-right tabular-nums`}
+                className={`${inputBase} text-right tabular-nums`}
               />
               <p className="self-center text-right text-sm font-semibold tabular-nums text-navy-900">
                 {valid ? formatMoney(lineTotalCents(quantity, unit_price_cents)) : "—"}

@@ -10,6 +10,8 @@
 //
 // Never overwrites an existing account. Remove the variables once the admin exists.
 
+import { createHash } from "node:crypto";
+
 import { createClient } from "@libsql/client";
 
 import { SCHEMA } from "../lib/db/schema.mjs";
@@ -17,6 +19,14 @@ import { SCHEMA } from "../lib/db/schema.mjs";
 const email = process.env.ADMIN_BOOTSTRAP_EMAIL?.trim().toLowerCase();
 const hash = process.env.ADMIN_BOOTSTRAP_PASSWORD_HASH?.trim();
 const name = process.env.ADMIN_BOOTSTRAP_NAME?.trim() || "Administrador";
+const dbUrl = process.env.DATABASE_URL || process.env.TURSO_DATABASE_URL;
+
+// Short fingerprint of the database in use (never the URL itself). If it changes
+// between deployments, each deployment is getting its own database branch.
+if (dbUrl) {
+  const fingerprint = createHash("sha256").update(dbUrl).digest("hex").slice(0, 10);
+  console.log(`bootstrap-admin: base de dados ${fingerprint}`);
+}
 
 if (!email || !hash) process.exit(0);
 

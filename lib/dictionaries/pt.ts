@@ -275,6 +275,7 @@ export const pt = {
   privacyLink: "Política de Privacidade",
   account: {
     area: "Área de cliente",
+    passwordToggle: { show: "Mostrar palavra-passe", hide: "Ocultar palavra-passe" },
     login: "Entrar",
     register: "Criar conta",
     logout: "Terminar sessão",
