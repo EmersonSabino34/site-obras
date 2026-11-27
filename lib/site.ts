@@ -31,7 +31,7 @@ export const site = {
   /** Shown on quotes and in the footer when filled in. */
   legal: {
     companyName: "HENPROTRUST" as string,
-    nif: "" as string,
+    nif: "254087663" as string,
     /** IMPIC licence / certificate number (alvará), if applicable. */
     permit: "" as string,
   },

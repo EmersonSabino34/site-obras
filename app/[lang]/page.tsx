@@ -33,6 +33,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
     telephone: site.phoneHref.replace("tel:", ""),
     email: site.email,
     sameAs: site.social.map((network) => network.url),
+    ...(site.legal.nif ? { taxID: site.legal.nif, vatID: `PT${site.legal.nif}` } : {}),
     inLanguage: htmlLang[lang],
     address: {
       "@type": "PostalAddress",
