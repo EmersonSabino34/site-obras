@@ -33,6 +33,16 @@ export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const hasSession = request.cookies.has(SESSION_COOKIE);
 
+  // One official address: www.henprotrust.pt → henprotrust.pt (permanent redirect).
+  const host = request.headers.get("host") ?? "";
+  if (host.startsWith("www.")) {
+    const url = request.nextUrl.clone();
+    url.protocol = "https:";
+    url.host = host.slice("www.".length);
+    url.port = "";
+    return NextResponse.redirect(url, 308);
+  }
+
   // Admin panel (Portuguese only, no language prefix).
   // This is only a fast, optimistic check: every page and action verifies the session again.
   if (pathname === "/admin" || pathname.startsWith("/admin/")) {
