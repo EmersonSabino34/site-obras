@@ -105,7 +105,7 @@ export function QuoteDocument({
           </ol>
 
           <div className="mt-4 hidden overflow-x-auto sm:block print:block">
-            <table className="w-full min-w-[560px] text-sm">
+            <table className="w-full min-w-[480px] text-sm">
               <thead>
                 <tr className="border-b-2 border-navy-900 text-left text-xs uppercase tracking-wider text-slate-500">
                   <th className="py-2 pr-3 font-semibold">#</th>
