@@ -6,6 +6,8 @@
 
 Site institucional bilingue (português de Portugal e inglês), com **área de cliente** para aceitar orçamentos online e **painel de gestão** para acompanhar pedidos, orçamentos, obras e clientes.
 
+**🌐 [henprotrust.pt](https://henprotrust.pt)**
+
 ![Next.js](https://img.shields.io/badge/Next.js-16-000000?logo=nextdotjs)
 ![React](https://img.shields.io/badge/React-19-149ECA?logo=react&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)
@@ -131,5 +133,6 @@ Os dois ficheiros de textos têm de manter a mesma estrutura (o TypeScript avisa
 - Localmente, a base de dados fica em `data/henprotrust.db`, que **não** vai para o git (contém dados pessoais de clientes). Faça cópias de segurança deste ficheiro.
 - Na **Vercel** (sem disco permanente), ligue uma base Turso em *Storage → Turso*; as variáveis `TURSO_DATABASE_URL` e `TURSO_AUTH_TOKEN` são reconhecidas automaticamente. Em alternativa, defina `DATABASE_URL` e `DATABASE_AUTH_TOKEN` (ver `.env.example`). O esquema é criado automaticamente.
 - **Administrador na Vercel**: as credenciais da Turso não se podem descarregar, por isso o primeiro administrador é criado durante a publicação. Gere a palavra-passe cifrada com `npm run admin:create -- --print-hash`, defina na Vercel (Production) `ADMIN_BOOTSTRAP_EMAIL`, `ADMIN_BOOTSTRAP_NAME` e `ADMIN_BOOTSTRAP_PASSWORD_HASH`, publique e depois remova as três variáveis. Uma conta já existente nunca é alterada.
+- **Domínio**: `henprotrust.pt` tem o DNS na Amen. Basta o registo `A @ → 76.76.21.21` (Vercel) e o `www` em CNAME para `henprotrust.pt`; o site redireciona `www` para o domínio principal. Os registos MX, TXT, SRV e CNAME do email ficam como estão — **não** trocar os servidores DNS (nameservers), senão o email deixa de funcionar.
 - Defina `SITE_URL` com o domínio final (ex.: `https://www.henprotrust.pt`) — usado nos links canónicos, no `sitemap.xml`, na imagem de partilha e nos links enviados por WhatsApp.
 - `npm run build` e `npm start` num servidor com Node.js, ou importar o repositório na Vercel.
