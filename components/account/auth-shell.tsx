@@ -20,8 +20,8 @@ export function AuthShell({
 }) {
   return (
     <Container className="py-12 sm:py-16">
-      <div className="mx-auto grid max-w-5xl overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-xl shadow-navy-900/5 lg:grid-cols-[0.85fr_1.15fr]">
-        <aside className="relative hidden overflow-hidden bg-navy-900 p-10 text-white lg:flex lg:flex-col lg:justify-between">
+      <div className="mx-auto grid max-w-5xl overflow-hidden rounded-3xl border border-slate-200 dark:border-white/10 bg-white dark:bg-navy-800 shadow-xl shadow-navy-900/5 lg:grid-cols-[0.85fr_1.15fr]">
+        <aside className="relative hidden overflow-hidden bg-navy-900 dark:bg-navy-950 p-10 text-white lg:flex lg:flex-col lg:justify-between">
           <div aria-hidden="true" className="bg-blueprint absolute inset-0" />
           <div className="relative">
             <FullLogo className="w-44" title="HENPROTRUST" />
@@ -43,8 +43,8 @@ export function AuthShell({
           </div>
         </aside>
         <div className="p-6 sm:p-10">
-          <h1 className="font-display text-2xl font-bold text-navy-900 sm:text-3xl">{title}</h1>
-          <p className="mt-2 text-slate-600">{subtitle}</p>
+          <h1 className="font-display text-2xl font-bold text-navy-900 dark:text-white sm:text-3xl">{title}</h1>
+          <p className="mt-2 text-slate-600 dark:text-slate-300">{subtitle}</p>
           <div className="mt-8">{children}</div>
         </div>
       </div>

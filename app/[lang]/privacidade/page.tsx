@@ -29,17 +29,17 @@ export default async function PrivacyPage({ params }: PageProps<"/[lang]/privaci
   return (
     <>
       <Header lang={lang} dict={dict} />
-      <main id="conteudo" className="bg-slate-50 py-14 sm:py-20">
+      <main id="conteudo" className="bg-slate-50 py-14 sm:py-20 dark:bg-navy-950">
         <Container>
-          <article className="mx-auto max-w-3xl rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-12">
-            <h1 className="font-display text-3xl font-bold text-navy-900 sm:text-4xl">{policy.title}</h1>
-            <p className="mt-2 text-sm text-slate-500">{policy.updated}</p>
-            <p className="mt-6 text-lg leading-relaxed text-slate-700">{policy.intro}</p>
+          <article className="mx-auto max-w-3xl rounded-3xl border border-slate-200 dark:border-white/10 bg-white dark:bg-navy-800 p-6 shadow-sm sm:p-12">
+            <h1 className="font-display text-3xl font-bold text-navy-900 dark:text-white sm:text-4xl">{policy.title}</h1>
+            <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">{policy.updated}</p>
+            <p className="mt-6 text-lg leading-relaxed text-slate-700 dark:text-slate-300">{policy.intro}</p>
             {policy.sections.map((section) => (
               <section key={section.title} className="mt-10">
-                <h2 className="font-display text-xl font-bold text-navy-900">{section.title}</h2>
+                <h2 className="font-display text-xl font-bold text-navy-900 dark:text-white">{section.title}</h2>
                 {section.body.map((paragraph) => (
-                  <p key={paragraph} className="mt-3 leading-relaxed text-slate-700">
+                  <p key={paragraph} className="mt-3 leading-relaxed text-slate-700 dark:text-slate-300">
                     {paragraph}
                   </p>
                 ))}

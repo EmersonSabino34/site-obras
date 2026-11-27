@@ -4,7 +4,7 @@ import { PasswordInput } from "./password-input";
 
 /** Input styles without margin (for inputs inside wrappers). */
 export const inputBase =
-  "block w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-navy-900 shadow-xs transition placeholder:text-slate-400 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/15 focus:outline-none aria-[invalid=true]:border-red-500 aria-[invalid=true]:focus:ring-red-500/15 disabled:bg-slate-100";
+  "block w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-navy-900 shadow-xs transition placeholder:text-slate-400 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/15 focus:outline-none aria-[invalid=true]:border-red-500 aria-[invalid=true]:focus:ring-red-500/15 disabled:bg-slate-100 dark:border-white/15 dark:bg-navy-950 dark:text-white dark:placeholder:text-slate-500 dark:disabled:bg-white/5";
 
 export const inputClass = `mt-1.5 ${inputBase}`;
 
@@ -23,14 +23,14 @@ type BaseProps = {
 
 function Label({ htmlFor, label, required, optionalLabel }: { htmlFor: string } & Pick<BaseProps, "label" | "required" | "optionalLabel">) {
   return (
-    <label htmlFor={htmlFor} className="text-sm font-semibold text-navy-900">
+    <label htmlFor={htmlFor} className="text-sm font-semibold text-navy-900 dark:text-white">
       {label}
       {required ? (
-        <span className="text-brand-700" aria-hidden="true">
+        <span className="text-brand-700 dark:text-brand-400" aria-hidden="true">
           {" "}*
         </span>
       ) : optionalLabel ? (
-        <span className="font-normal text-slate-500"> ({optionalLabel})</span>
+        <span className="font-normal text-slate-500 dark:text-slate-400"> ({optionalLabel})</span>
       ) : null}
     </label>
   );
@@ -39,13 +39,13 @@ function Label({ htmlFor, label, required, optionalLabel }: { htmlFor: string } 
 function Help({ id, error, hint }: { id: string; error?: string; hint?: string }) {
   if (error) {
     return (
-      <p id={id} className="mt-1.5 text-sm font-medium text-red-600">
+      <p id={id} className="mt-1.5 text-sm font-medium text-red-600 dark:text-red-400">
         {error}
       </p>
     );
   }
   return hint ? (
-    <p id={id} className="mt-1.5 text-sm text-slate-500">
+    <p id={id} className="mt-1.5 text-sm text-slate-500 dark:text-slate-400">
       {hint}
     </p>
   ) : null;
@@ -206,8 +206,8 @@ export function FormMessage({ tone, children }: { tone: "error" | "success"; chi
       role={tone === "error" ? "alert" : "status"}
       className={`rounded-lg border px-4 py-3 text-sm font-medium ${
         tone === "error"
-          ? "border-red-200 bg-red-50 text-red-700"
-          : "border-emerald-200 bg-emerald-50 text-emerald-800"
+          ? "border-red-200 dark:border-red-500/30 bg-red-50 dark:bg-red-500/10 text-red-700 dark:text-red-300"
+          : "border-emerald-200 dark:border-emerald-500/30 bg-emerald-50 dark:bg-emerald-500/10 text-emerald-800 dark:text-emerald-300"
       }`}
     >
       {children}

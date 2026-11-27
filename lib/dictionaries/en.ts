@@ -52,6 +52,12 @@ export const en: Dictionary = {
     contact: "Contact",
     cta: "Get a quote",
     openMenu: "Open menu",
+    theme: {
+      toDark: "Switch to dark mode",
+      toLight: "Switch to light mode",
+      dark: "Dark mode",
+      light: "Light mode",
+    },
     closeMenu: "Close menu",
     language: "Language",
   },

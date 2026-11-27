@@ -3,6 +3,7 @@
 import { useEffect, useId, useState } from "react";
 
 import { CloseIcon, MenuIcon, UserIcon, WhatsAppIcon } from "./icons";
+import { ThemeToggle } from "./theme-toggle";
 
 type Props = {
   links: { href: string; label: string }[];
@@ -11,9 +12,10 @@ type Props = {
   ctaLabel: string;
   ctaHref: string;
   account: { href: string; label: string };
+  themeLabels: { toDark: string; toLight: string; dark: string; light: string };
 };
 
-export function MobileMenu({ links, openLabel, closeLabel, ctaLabel, ctaHref, account }: Props) {
+export function MobileMenu({ links, openLabel, closeLabel, ctaLabel, ctaHref, account, themeLabels }: Props) {
   const [open, setOpen] = useState(false);
   const panelId = useId();
 
@@ -65,10 +67,11 @@ export function MobileMenu({ links, openLabel, closeLabel, ctaLabel, ctaHref, ac
               </li>
             ))}
           </ul>
+          <ThemeToggle labels={themeLabels} variant="row" className="mt-4" />
           <a
             href={account.href}
             onClick={() => setOpen(false)}
-            className="mt-4 flex items-center justify-center gap-2.5 rounded-lg border border-white/20 px-6 py-3.5 font-semibold text-white transition-colors hover:bg-white/5"
+            className="mt-3 flex items-center justify-center gap-2.5 rounded-lg border border-white/20 px-6 py-3.5 font-semibold text-white transition-colors hover:bg-white/5"
           >
             <UserIcon className="size-5" />
             {account.label}

@@ -28,7 +28,11 @@ export function QuoteDocument({
   const money = (cents: number) => formatMoney(cents, locale);
 
   return (
-    <article className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm print:rounded-none print:border-0 print:shadow-none">
+    // Always rendered as a light "paper" document, also in dark mode.
+    <article
+      data-theme="light"
+      className="overflow-hidden rounded-2xl border border-slate-200 bg-white text-navy-900 shadow-sm [color-scheme:light] print:rounded-none print:border-0 print:shadow-none"
+    >
       <div className="h-1.5 bg-brand-500" />
       <div className="p-6 sm:p-10 print:p-0 print:pt-6">
         <header className="flex flex-col gap-6 border-b border-slate-200 pb-8 sm:flex-row sm:items-start sm:justify-between">

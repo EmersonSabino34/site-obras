@@ -16,7 +16,7 @@ export function Clients({ dict }: { dict: Dictionary }) {
   const { clients, anchors } = dict;
 
   return (
-    <section id={anchors.clients} className="bg-slate-50 py-20 sm:py-28">
+    <section id={anchors.clients} className="bg-slate-50 py-20 sm:py-28 dark:bg-navy-900">
       <Container>
         <SectionHeading
           eyebrow={clients.eyebrow}
@@ -31,15 +31,15 @@ export function Clients({ dict }: { dict: Dictionary }) {
             return (
               <li
                 key={client.id}
-                className="reveal group flex flex-col rounded-2xl border border-slate-200 bg-white p-7 transition duration-300 hover:border-navy-900 hover:bg-navy-900"
+                className="reveal group flex flex-col rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-navy-800 p-7 transition duration-300 hover:border-navy-900 dark:hover:border-white/40 hover:bg-navy-900 dark:hover:bg-navy-700"
               >
-                <span className="grid size-12 place-items-center rounded-full bg-brand-50 text-brand-700 transition-colors group-hover:bg-brand-500 group-hover:text-navy-950">
+                <span className="grid size-12 place-items-center rounded-full bg-brand-50 dark:bg-brand-500/15 text-brand-700 dark:text-brand-400 transition-colors group-hover:bg-brand-500 group-hover:text-navy-950">
                   <Icon className="size-6" />
                 </span>
-                <h3 className="mt-6 font-display text-lg font-bold text-navy-900 transition-colors group-hover:text-white">
+                <h3 className="mt-6 font-display text-lg font-bold text-navy-900 dark:text-white transition-colors group-hover:text-white">
                   {client.title}
                 </h3>
-                <p className="mt-2.5 leading-relaxed text-slate-600 transition-colors group-hover:text-slate-300">
+                <p className="mt-2.5 leading-relaxed text-slate-600 dark:text-slate-300 transition-colors group-hover:text-slate-300">
                   {client.description}
                 </p>
               </li>

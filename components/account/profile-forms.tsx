@@ -49,11 +49,11 @@ export function ProfileForm({
       <div className="grid gap-5 sm:grid-cols-2">
         <TextField className="sm:col-span-2" label={labels.name} name="name" autoComplete="name" required defaultValue={value("name")} error={e.name} />
         <div>
-          <label htmlFor="field-email" className="text-sm font-semibold text-navy-900">
+          <label htmlFor="field-email" className="text-sm font-semibold text-navy-900 dark:text-white">
             {labels.email}
           </label>
-          <input id="field-email" type="email" value={user.email} disabled readOnly className="mt-1.5 block w-full rounded-lg border border-slate-200 bg-slate-100 px-3.5 py-2.5 text-slate-500" />
-          <p className="mt-1.5 text-sm text-slate-500">{labels.emailNote}</p>
+          <input id="field-email" type="email" value={user.email} disabled readOnly className="mt-1.5 block w-full rounded-lg border border-slate-200 dark:border-white/10 bg-slate-100 dark:bg-white/5 px-3.5 py-2.5 text-slate-500 dark:text-slate-400" />
+          <p className="mt-1.5 text-sm text-slate-500 dark:text-slate-400">{labels.emailNote}</p>
         </div>
         <TextField label={labels.phone} name="phone" type="tel" autoComplete="tel" required defaultValue={value("phone")} error={e.phone} />
         <SelectField

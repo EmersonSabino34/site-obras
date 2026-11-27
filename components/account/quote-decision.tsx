@@ -32,42 +32,42 @@ export function QuoteDecision({
     <div className="space-y-4 print:hidden">
       <form
         action={acceptAction}
-        className="rounded-2xl border-2 border-emerald-200 bg-emerald-50/60 p-6 sm:p-8"
+        className="rounded-2xl border-2 border-emerald-200 dark:border-emerald-500/30 bg-emerald-50/60 dark:bg-emerald-500/10 p-6 sm:p-8"
       >
         <input type="hidden" name="lang" value={lang} />
         <input type="hidden" name="quote_id" value={quoteId} />
         <input type="hidden" name="decision" value="accept" />
-        <h2 className="flex items-center gap-2 font-display text-xl font-bold text-navy-900">
+        <h2 className="flex items-center gap-2 font-display text-xl font-bold text-navy-900 dark:text-white">
           <BadgeCheckIcon className="size-6 text-emerald-600" />
           {labels.acceptTitle}
         </h2>
-        <p className="mt-2 text-slate-700">{labels.acceptText}</p>
+        <p className="mt-2 text-slate-700 dark:text-slate-300">{labels.acceptText}</p>
         {acceptState?.message ? (
           <div className="mt-4">
             <FormMessage tone="error">{acceptState.message}</FormMessage>
           </div>
         ) : null}
-        <label className="mt-5 flex items-start gap-3 font-medium text-navy-900">
+        <label className="mt-5 flex items-start gap-3 font-medium text-navy-900 dark:text-white">
           <input
             type="checkbox"
             name="confirm"
             required
-            className="mt-1 size-4 rounded border-slate-300 accent-emerald-600"
+            className="mt-1 size-4 rounded border-slate-300 dark:border-white/15 accent-emerald-600"
             aria-invalid={acceptState?.errors?.confirm ? true : undefined}
           />
           {labels.confirm}
         </label>
         {acceptState?.errors?.confirm ? (
-          <p className="mt-1.5 text-sm font-medium text-red-600">{acceptState.errors.confirm}</p>
+          <p className="mt-1.5 text-sm font-medium text-red-600 dark:text-red-400">{acceptState.errors.confirm}</p>
         ) : null}
         <SubmitButton variant="success" className="mt-6 w-full py-3 text-base sm:w-auto">
           {labels.accept}
         </SubmitButton>
       </form>
 
-      <details className="group rounded-2xl border border-slate-200 bg-white p-6">
-        <summary className="cursor-pointer list-none font-semibold text-slate-700 marker:hidden">
-          <span className="underline decoration-slate-300 underline-offset-4 group-open:no-underline">
+      <details className="group rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-navy-800 p-6">
+        <summary className="cursor-pointer list-none font-semibold text-slate-700 dark:text-slate-300 marker:hidden">
+          <span className="underline decoration-slate-300 dark:decoration-slate-600 underline-offset-4 group-open:no-underline">
             {labels.rejectTitle}
           </span>
         </summary>

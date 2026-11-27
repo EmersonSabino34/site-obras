@@ -38,9 +38,9 @@ export default function AccountPage(props: PageProps<"/[lang]/conta">) {
 function Section({ title, count, children }: { title: string; count: number; children: ReactNode }) {
   return (
     <section>
-      <h2 className="flex items-center gap-2 font-display text-xl font-bold text-navy-900">
+      <h2 className="flex items-center gap-2 font-display text-xl font-bold text-navy-900 dark:text-white">
         {title}
-        <span className="rounded-full bg-slate-200 px-2 py-0.5 text-xs font-bold text-slate-600">{count}</span>
+        <span className="rounded-full bg-slate-200 dark:bg-white/10 px-2 py-0.5 text-xs font-bold text-slate-600 dark:text-slate-300">{count}</span>
       </h2>
       <div className="mt-4">{children}</div>
     </section>
@@ -49,7 +49,7 @@ function Section({ title, count, children }: { title: string; count: number; chi
 
 function Empty({ children }: { children: ReactNode }) {
   return (
-    <p className="rounded-2xl border border-dashed border-slate-300 bg-white px-6 py-8 text-center text-slate-500">
+    <p className="rounded-2xl border border-dashed border-slate-300 dark:border-white/15 bg-white dark:bg-navy-800 px-6 py-8 text-center text-slate-500 dark:text-slate-400">
       {children}
     </p>
   );
@@ -76,10 +76,10 @@ async function Dashboard({ params, searchParams }: PageProps<"/[lang]/conta">) {
 
       <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h1 className="font-display text-3xl font-bold text-navy-900">
+          <h1 className="font-display text-3xl font-bold text-navy-900 dark:text-white">
             {d.greeting.replace("{name}", user.name.split(" ")[0])}
           </h1>
-          <p className="mt-2 text-slate-600">{d.intro}</p>
+          <p className="mt-2 text-slate-600 dark:text-slate-300">{d.intro}</p>
         </div>
         <Link
           href={`/${lang}/conta/pedidos/novo`}
@@ -91,8 +91,8 @@ async function Dashboard({ params, searchParams }: PageProps<"/[lang]/conta">) {
       </div>
 
       {pedido === "enviado" ? (
-        <div role="status" className="flex flex-col gap-4 rounded-2xl border border-emerald-200 bg-emerald-50 p-5 sm:flex-row sm:items-center sm:justify-between">
-          <p className="font-medium text-emerald-800">{d.requestCreated}</p>
+        <div role="status" className="flex flex-col gap-4 rounded-2xl border border-emerald-200 dark:border-emerald-500/30 bg-emerald-50 dark:bg-emerald-500/10 p-5 sm:flex-row sm:items-center sm:justify-between">
+          <p className="font-medium text-emerald-800 dark:text-emerald-300">{d.requestCreated}</p>
           <a
             href={whatsappLink(d.notifyRequestMessage)}
             target="_blank"
@@ -106,9 +106,9 @@ async function Dashboard({ params, searchParams }: PageProps<"/[lang]/conta">) {
       ) : null}
 
       {user.must_change_password ? (
-        <div role="alert" className="flex flex-col gap-3 rounded-2xl border border-amber-200 bg-amber-50 p-5 sm:flex-row sm:items-center sm:justify-between">
-          <p className="font-medium text-amber-900">{d.mustChangePassword}</p>
-          <Link href={`/${lang}/conta/perfil`} className="shrink-0 font-semibold text-amber-900 underline underline-offset-4">
+        <div role="alert" className="flex flex-col gap-3 rounded-2xl border border-amber-200 dark:border-amber-500/30 bg-amber-50 dark:bg-amber-500/10 p-5 sm:flex-row sm:items-center sm:justify-between">
+          <p className="font-medium text-amber-900 dark:text-amber-200">{d.mustChangePassword}</p>
+          <Link href={`/${lang}/conta/perfil`} className="shrink-0 font-semibold text-amber-900 dark:text-amber-200 underline underline-offset-4">
             {d.changeNow}
           </Link>
         </div>
@@ -128,19 +128,19 @@ async function Dashboard({ params, searchParams }: PageProps<"/[lang]/conta">) {
                     <li key={quote.id}>
                       <Link
                         href={`/${lang}/conta/orcamentos/${quote.id}`}
-                        className={`group flex flex-col gap-4 rounded-2xl border bg-white p-5 transition hover:shadow-md sm:flex-row sm:items-center ${
-                          awaiting ? "border-brand-500 ring-4 ring-brand-500/10" : "border-slate-200"
+                        className={`group flex flex-col gap-4 rounded-2xl border bg-white dark:bg-navy-800 p-5 transition hover:shadow-md sm:flex-row sm:items-center ${
+                          awaiting ? "border-brand-500 ring-4 ring-brand-500/10" : "border-slate-200 dark:border-white/10"
                         }`}
                       >
-                        <span className="grid size-12 shrink-0 place-items-center rounded-xl bg-navy-900 text-brand-400">
+                        <span className="grid size-12 shrink-0 place-items-center rounded-xl bg-navy-900 dark:bg-navy-950 text-brand-400">
                           <FileIcon className="size-6" />
                         </span>
                         <span className="min-w-0 flex-1">
                           <span className="flex flex-wrap items-center gap-2">
-                            <span className="font-semibold text-navy-900">{quote.title}</span>
+                            <span className="font-semibold text-navy-900 dark:text-white">{quote.title}</span>
                             <StatusBadge tone={statusTone[status]}>{t.status.quote[status]}</StatusBadge>
                           </span>
-                          <span className="mt-1 block text-sm text-slate-500">
+                          <span className="mt-1 block text-sm text-slate-500 dark:text-slate-400">
                             {quote.number} · {formatDate(quote.sent_at ?? quote.created_at, lang)}
                             {awaiting && quote.valid_until
                               ? ` · ${dict.account.quotePage.validUntil} ${formatDate(quote.valid_until, lang)}`
@@ -148,10 +148,10 @@ async function Dashboard({ params, searchParams }: PageProps<"/[lang]/conta">) {
                           </span>
                         </span>
                         <span className="flex items-center justify-between gap-4 sm:flex-col sm:items-end">
-                          <span className="font-display text-lg font-bold text-navy-900">
+                          <span className="font-display text-lg font-bold text-navy-900 dark:text-white">
                             {formatMoney(quote.total_cents, lang)}
                           </span>
-                          <span className="inline-flex items-center gap-1 text-sm font-semibold text-brand-700">
+                          <span className="inline-flex items-center gap-1 text-sm font-semibold text-brand-700 dark:text-brand-400">
                             {awaiting ? d.awaiting : d.viewQuote}
                             <ArrowRightIcon className="size-4 transition-transform group-hover:translate-x-0.5" />
                           </span>
@@ -170,11 +170,11 @@ async function Dashboard({ params, searchParams }: PageProps<"/[lang]/conta">) {
             ) : (
               <ul className="space-y-4">
                 {works.map((work) => (
-                  <li key={work.id} className="rounded-2xl border border-slate-200 bg-white p-6">
+                  <li key={work.id} className="rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-navy-800 p-6">
                     <div className="flex flex-wrap items-start justify-between gap-3">
                       <div>
-                        <p className="font-semibold text-navy-900">{work.title}</p>
-                        <p className="text-sm text-slate-500">
+                        <p className="font-semibold text-navy-900 dark:text-white">{work.title}</p>
+                        <p className="text-sm text-slate-500 dark:text-slate-400">
                           {[work.location, work.quote_number && `${d.quoteRef} ${work.quote_number}`]
                             .filter(Boolean)
                             .join(" · ")}
@@ -184,24 +184,24 @@ async function Dashboard({ params, searchParams }: PageProps<"/[lang]/conta">) {
                     </div>
                     <dl className="mt-4 flex flex-wrap gap-x-8 gap-y-1 text-sm">
                       <div className="flex gap-2">
-                        <dt className="text-slate-500">{d.start}:</dt>
+                        <dt className="text-slate-500 dark:text-slate-400">{d.start}:</dt>
                         <dd className="font-medium">{formatDate(work.start_date, lang)}</dd>
                       </div>
                       <div className="flex gap-2">
-                        <dt className="text-slate-500">{d.end}:</dt>
+                        <dt className="text-slate-500 dark:text-slate-400">{d.end}:</dt>
                         <dd className="font-medium">{formatDate(work.end_date, lang)}</dd>
                       </div>
                     </dl>
-                    <div className="mt-5 border-t border-slate-100 pt-4">
-                      <p className="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">{d.updates}</p>
+                    <div className="mt-5 border-t border-slate-100 dark:border-white/5 pt-4">
+                      <p className="text-xs font-bold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">{d.updates}</p>
                       {work.updates.length === 0 ? (
-                        <p className="mt-2 text-sm text-slate-500">{d.noUpdates}</p>
+                        <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">{d.noUpdates}</p>
                       ) : (
                         <ol className="mt-3 space-y-3 border-l-2 border-brand-500/40 pl-4">
                           {work.updates.slice(0, 5).map((update) => (
                             <li key={update.id}>
-                              <p className="text-xs text-slate-500">{formatDateTime(update.created_at, lang)}</p>
-                              <p className="mt-0.5 whitespace-pre-line text-sm text-navy-900">{update.message}</p>
+                              <p className="text-xs text-slate-500 dark:text-slate-400">{formatDateTime(update.created_at, lang)}</p>
+                              <p className="mt-0.5 whitespace-pre-line text-sm text-navy-900 dark:text-white">{update.message}</p>
                             </li>
                           ))}
                         </ol>
@@ -218,17 +218,17 @@ async function Dashboard({ params, searchParams }: PageProps<"/[lang]/conta">) {
           {requests.length === 0 ? (
             <Empty>{d.emptyRequests}</Empty>
           ) : (
-            <ul className="divide-y divide-slate-100 rounded-2xl border border-slate-200 bg-white">
+            <ul className="divide-y divide-slate-100 dark:divide-white/5 rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-navy-800">
               {requests.map((request) => (
                 <li key={request.id} className="p-5">
                   <div className="flex items-start justify-between gap-3">
-                    <p className="font-semibold text-navy-900">{request.service}</p>
+                    <p className="font-semibold text-navy-900 dark:text-white">{request.service}</p>
                     <StatusBadge tone={statusTone[request.status]}>{t.status.request[request.status]}</StatusBadge>
                   </div>
-                  <p className="mt-1 text-sm text-slate-500">
+                  <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
                     {[request.location, formatDate(request.created_at, lang)].filter(Boolean).join(" · ")}
                   </p>
-                  <p className="mt-2 line-clamp-2 text-sm text-slate-600">{request.description}</p>
+                  <p className="mt-2 line-clamp-2 text-sm text-slate-600 dark:text-slate-300">{request.description}</p>
                 </li>
               ))}
             </ul>

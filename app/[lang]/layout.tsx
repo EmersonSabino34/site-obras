@@ -7,6 +7,7 @@ import { inter, montserrat } from "@/lib/fonts";
 import { getDictionary } from "@/lib/i18n";
 import { hasLocale, htmlLang, locales, ogLocale } from "@/lib/locales";
 import { site, siteUrl } from "@/lib/site";
+import { themeScript } from "@/lib/theme";
 
 export function generateStaticParams() {
   return locales.map((lang) => ({ lang }));
@@ -62,7 +63,16 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
   if (!hasLocale(lang)) notFound();
 
   return (
-    <html lang={htmlLang[lang]} className={`${inter.variable} ${montserrat.variable}`}>
+    // data-theme is changed by the inline script before paint, hence suppressHydrationWarning.
+    <html
+      lang={htmlLang[lang]}
+      data-theme="light"
+      suppressHydrationWarning
+      className={`${inter.variable} ${montserrat.variable}`}
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body>{children}</body>
     </html>
   );

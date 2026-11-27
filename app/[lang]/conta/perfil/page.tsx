@@ -34,11 +34,11 @@ async function Content({ params }: PageProps<"/[lang]/conta/perfil">) {
     <div className="space-y-8">
       <AccountNav lang={lang} dict={dict} current="profile" />
       <div>
-        <h1 className="font-display text-3xl font-bold text-navy-900">{t.title}</h1>
-        <p className="mt-2 text-slate-600">{t.subtitle}</p>
+        <h1 className="font-display text-3xl font-bold text-navy-900 dark:text-white">{t.title}</h1>
+        <p className="mt-2 text-slate-600 dark:text-slate-300">{t.subtitle}</p>
       </div>
       <div className="grid gap-8 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
-        <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+        <section className="rounded-3xl border border-slate-200 dark:border-white/10 bg-white dark:bg-navy-800 p-6 shadow-sm sm:p-8">
           <ProfileForm
             lang={lang}
             user={user}
@@ -49,11 +49,11 @@ async function Content({ params }: PageProps<"/[lang]/conta/perfil">) {
         </section>
         <section
           id="palavra-passe"
-          className={`h-fit rounded-3xl border bg-white p-6 shadow-sm sm:p-8 ${
-            user.must_change_password ? "border-amber-300 ring-4 ring-amber-100" : "border-slate-200"
+          className={`h-fit rounded-3xl border bg-white dark:bg-navy-800 p-6 shadow-sm sm:p-8 ${
+            user.must_change_password ? "border-amber-300 dark:border-amber-500/40 ring-4 ring-amber-100 dark:ring-amber-500/10" : "border-slate-200 dark:border-white/10"
           }`}
         >
-          <h2 className="font-display text-xl font-bold text-navy-900">{t.passwordTitle}</h2>
+          <h2 className="font-display text-xl font-bold text-navy-900 dark:text-white">{t.passwordTitle}</h2>
           <div className="mt-6">
             <PasswordForm lang={lang} labels={{ ...t, passwordHint: r.passwordHint }} passwordLabels={dict.account.passwordToggle} />
           </div>

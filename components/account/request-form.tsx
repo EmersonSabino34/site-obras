@@ -69,7 +69,7 @@ export function RequestForm({
       <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
         <Link
           href={`/${lang}/conta`}
-          className="inline-flex items-center justify-center rounded-lg px-5 py-2.5 text-sm font-semibold text-slate-600 hover:text-navy-900"
+          className="inline-flex items-center justify-center rounded-lg px-5 py-2.5 text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-navy-900 dark:hover:text-white"
         >
           {labels.cancel}
         </Link>

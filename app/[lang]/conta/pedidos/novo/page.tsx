@@ -31,9 +31,9 @@ async function Content({ params }: PageProps<"/[lang]/conta/pedidos/novo">) {
   return (
     <div className="space-y-8">
       <AccountNav lang={lang} dict={dict} current="request" />
-      <div className="mx-auto max-w-3xl rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-10">
-        <h1 className="font-display text-2xl font-bold text-navy-900 sm:text-3xl">{t.title}</h1>
-        <p className="mt-2 text-slate-600">{t.subtitle}</p>
+      <div className="mx-auto max-w-3xl rounded-3xl border border-slate-200 dark:border-white/10 bg-white dark:bg-navy-800 p-6 shadow-sm sm:p-10">
+        <h1 className="font-display text-2xl font-bold text-navy-900 dark:text-white sm:text-3xl">{t.title}</h1>
+        <p className="mt-2 text-slate-600 dark:text-slate-300">{t.subtitle}</p>
         <div className="mt-8">
           <RequestForm
             lang={lang}

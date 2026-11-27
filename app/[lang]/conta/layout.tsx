@@ -19,7 +19,7 @@ export default async function AccountLayout({ children, params }: LayoutProps<"/
   return (
     <>
       <Header lang={lang} dict={dict} />
-      <main id="conteudo" className="min-h-[70vh] bg-slate-50">
+      <main id="conteudo" className="min-h-[70vh] bg-slate-50 dark:bg-navy-950">
         {children}
       </main>
       <Footer lang={lang} dict={dict} />

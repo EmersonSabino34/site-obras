@@ -32,7 +32,7 @@ export function SectionHeading({
     <div className={align === "center" ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}>
       <p
         className={`inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.2em] sm:text-sm ${
-          dark ? "text-brand-400" : "text-brand-700"
+          dark ? "text-brand-400" : "text-brand-700 dark:text-brand-400"
         }`}
       >
         <span aria-hidden="true" className="h-0.5 w-8 bg-brand-500" />
@@ -40,7 +40,7 @@ export function SectionHeading({
       </p>
       <h2
         className={`mt-4 text-balance font-display text-3xl font-bold tracking-tight sm:text-4xl lg:text-[2.6rem] lg:leading-[1.15] ${
-          dark ? "text-white" : "text-navy-900"
+          dark ? "text-white" : "text-navy-900 dark:text-white"
         }`}
       >
         {title}
@@ -48,7 +48,7 @@ export function SectionHeading({
       {intro ? (
         <p
           className={`mt-5 text-pretty text-lg leading-relaxed ${
-            dark ? "text-slate-300" : "text-slate-600"
+            dark ? "text-slate-300" : "text-slate-600 dark:text-slate-300"
           }`}
         >
           {intro}

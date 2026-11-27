@@ -8,6 +8,7 @@ import { UserIcon, WhatsAppIcon } from "./icons";
 import { LanguageSwitch } from "./language-switch";
 import { HouseMark } from "./logo";
 import { MobileMenu } from "./mobile-menu";
+import { ThemeToggle } from "./theme-toggle";
 import { Container } from "./ui";
 
 /** Section links of the home page (absolute, so they also work from other pages). */
@@ -41,14 +42,14 @@ export function Header({ lang, dict }: { lang: Locale; dict: Dictionary }) {
             <span className="font-display text-[0.8rem] font-semibold tracking-[0.22em] text-white sm:text-[0.95rem] sm:tracking-[0.28em]">
               HENPROTRUST
             </span>
-            <span className="mt-1.5 hidden text-[0.65rem] font-medium uppercase tracking-[0.18em] text-slate-400 sm:block xl:hidden">
+            <span className="mt-1.5 hidden text-[0.65rem] font-medium uppercase tracking-[0.18em] text-slate-400 sm:block md:hidden">
               {dict.common.tagline}
             </span>
           </span>
         </a>
 
         <nav aria-label={dict.nav.main} className="hidden xl:block">
-          <ul className="flex items-center gap-6">
+          <ul className="flex items-center gap-5">
             {links.map((link) => (
               <li key={link.href}>
                 <a
@@ -64,6 +65,7 @@ export function Header({ lang, dict }: { lang: Locale; dict: Dictionary }) {
 
         <div className="flex shrink-0 items-center gap-2 sm:gap-3">
           <LanguageSwitch current={lang} label={dict.nav.language} />
+          <ThemeToggle labels={dict.nav.theme} className="hidden sm:grid" />
           <Link
             href={accountHref}
             aria-label={dict.account.area}
@@ -88,6 +90,7 @@ export function Header({ lang, dict }: { lang: Locale; dict: Dictionary }) {
             ctaLabel={dict.nav.cta}
             ctaHref={ctaHref}
             account={{ href: accountHref, label: dict.account.area }}
+            themeLabels={dict.nav.theme}
           />
         </div>
       </Container>

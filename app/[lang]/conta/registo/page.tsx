@@ -29,9 +29,9 @@ export default async function RegisterPage({ params }: PageProps<"/[lang]/conta/
         privacyLabel={dict.privacyLink}
         passwordLabels={dict.account.passwordToggle}
       />
-      <p className="mt-8 border-t border-slate-200 pt-6 text-sm text-slate-600">
+      <p className="mt-8 border-t border-slate-200 dark:border-white/10 pt-6 text-sm text-slate-600 dark:text-slate-300">
         {t.haveAccount}{" "}
-        <Link href={`/${lang}/conta/entrar`} className="font-semibold text-brand-700 underline underline-offset-2">
+        <Link href={`/${lang}/conta/entrar`} className="font-semibold text-brand-700 dark:text-brand-400 underline underline-offset-2">
           {dict.account.login}
         </Link>
       </p>

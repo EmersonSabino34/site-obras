@@ -1,13 +1,13 @@
 import type { Tone } from "@/lib/admin/labels";
 
 const tones: Record<Tone, string> = {
-  orange: "bg-brand-100 text-brand-700 ring-brand-500/30",
-  blue: "bg-sky-50 text-sky-700 ring-sky-600/20",
-  green: "bg-emerald-50 text-emerald-700 ring-emerald-600/20",
-  red: "bg-red-50 text-red-700 ring-red-600/20",
-  gray: "bg-slate-100 text-slate-600 ring-slate-500/20",
+  orange: "bg-brand-100 text-brand-700 ring-brand-500/30 dark:bg-brand-500/15 dark:text-brand-300",
+  blue: "bg-sky-50 text-sky-700 ring-sky-600/20 dark:bg-sky-500/15 dark:text-sky-300",
+  green: "bg-emerald-50 text-emerald-700 ring-emerald-600/20 dark:bg-emerald-500/15 dark:text-emerald-300",
+  red: "bg-red-50 text-red-700 ring-red-600/20 dark:bg-red-500/15 dark:text-red-300",
+  gray: "bg-slate-100 text-slate-600 ring-slate-500/20 dark:bg-white/10 dark:text-slate-300",
   navy: "bg-navy-900 text-white ring-navy-900",
-  amber: "bg-amber-50 text-amber-800 ring-amber-600/25",
+  amber: "bg-amber-50 text-amber-800 ring-amber-600/25 dark:bg-amber-500/15 dark:text-amber-200",
 };
 
 export function StatusBadge({ tone, children }: { tone: Tone; children: React.ReactNode }) {

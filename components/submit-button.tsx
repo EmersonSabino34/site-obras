@@ -5,10 +5,10 @@ import { useFormStatus } from "react-dom";
 
 const variants = {
   primary: "bg-brand-500 text-navy-950 hover:bg-brand-400 shadow-sm",
-  navy: "bg-navy-900 text-white hover:bg-navy-800 shadow-sm",
+  navy: "bg-navy-900 text-white hover:bg-navy-800 shadow-sm dark:bg-white dark:text-navy-950 dark:hover:bg-slate-200",
   success: "bg-emerald-600 text-white hover:bg-emerald-700 shadow-sm",
-  danger: "bg-white text-red-700 border border-red-200 hover:bg-red-50",
-  outline: "bg-white text-navy-900 border border-slate-300 hover:border-navy-900",
+  danger: "bg-white text-red-700 border border-red-200 hover:bg-red-50 dark:bg-transparent dark:text-red-300 dark:border-red-500/30 dark:hover:bg-red-500/10",
+  outline: "bg-white text-navy-900 border border-slate-300 hover:border-navy-900 dark:bg-transparent dark:text-white dark:border-white/20 dark:hover:border-white/60",
 };
 
 export function SubmitButton({

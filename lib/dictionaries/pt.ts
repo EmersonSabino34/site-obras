@@ -51,6 +51,12 @@ export const pt = {
     contact: "Contacto",
     cta: "Pedir orçamento",
     openMenu: "Abrir menu",
+    theme: {
+      toDark: "Mudar para modo escuro",
+      toLight: "Mudar para modo claro",
+      dark: "Modo escuro",
+      light: "Modo claro",
+    },
     closeMenu: "Fechar menu",
     language: "Idioma",
   },

@@ -71,24 +71,24 @@ export function RegisterForm({
       </div>
 
       <div>
-        <label className="flex items-start gap-3 text-sm text-slate-700">
+        <label className="flex items-start gap-3 text-sm text-slate-700 dark:text-slate-300">
           <input
             type="checkbox"
             name="consent"
             required
             defaultChecked={v.consent === "on"}
             aria-invalid={e.consent ? true : undefined}
-            className="mt-0.5 size-4 rounded border-slate-300 accent-brand-500"
+            className="mt-0.5 size-4 rounded border-slate-300 dark:border-white/15 accent-brand-500"
           />
           <span>
             {labels.consentBefore}{" "}
-            <Link href={`/${lang}/privacidade`} target="_blank" className="font-semibold text-brand-700 underline underline-offset-2">
+            <Link href={`/${lang}/privacidade`} target="_blank" className="font-semibold text-brand-700 dark:text-brand-400 underline underline-offset-2">
               {privacyLabel}
             </Link>
             .
           </span>
         </label>
-        {e.consent ? <p className="mt-1.5 text-sm font-medium text-red-600">{e.consent}</p> : null}
+        {e.consent ? <p className="mt-1.5 text-sm font-medium text-red-600 dark:text-red-400">{e.consent}</p> : null}
       </div>
 
       <SubmitButton className="w-full py-3 text-base">{labels.submit}</SubmitButton>

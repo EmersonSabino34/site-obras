@@ -34,7 +34,7 @@ type Props = {
 };
 
 const fieldClass =
-  "mt-2 block w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-navy-900 shadow-xs transition placeholder:text-slate-400 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/15 focus:outline-none";
+  "mt-2 block w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-navy-900 shadow-xs transition placeholder:text-slate-400 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/15 focus:outline-none dark:border-white/15 dark:bg-navy-950 dark:text-white dark:placeholder:text-slate-500";
 
 export function ContactForm({ labels, services, whatsappNumber, email }: Props) {
   const id = useId();
@@ -76,7 +76,7 @@ export function ContactForm({ labels, services, whatsappNumber, email }: Props) 
   }
 
   const requiredMark = (
-    <span className="text-brand-700" aria-hidden="true">
+    <span className="text-brand-700 dark:text-brand-400" aria-hidden="true">
       {" "}*
     </span>
   );
@@ -85,16 +85,16 @@ export function ContactForm({ labels, services, whatsappNumber, email }: Props) 
     <form
       onSubmit={handleSubmit}
       aria-labelledby={`${id}-title`}
-      className="rounded-3xl border border-slate-200 bg-white p-6 shadow-xl shadow-navy-900/5 sm:p-10"
+      className="rounded-3xl border border-slate-200 dark:border-white/10 bg-white dark:bg-navy-800 p-6 shadow-xl shadow-navy-900/5 sm:p-10"
     >
-      <h3 id={`${id}-title`} className="font-display text-2xl font-bold text-navy-900">
+      <h3 id={`${id}-title`} className="font-display text-2xl font-bold text-navy-900 dark:text-white">
         {labels.title}
       </h3>
-      <p className="mt-2 text-slate-600">{labels.subtitle}</p>
+      <p className="mt-2 text-slate-600 dark:text-slate-300">{labels.subtitle}</p>
 
       <div className="mt-8 grid gap-5 sm:grid-cols-2">
         <div className="sm:col-span-2">
-          <label htmlFor={`${id}-name`} className="text-sm font-semibold text-navy-900">
+          <label htmlFor={`${id}-name`} className="text-sm font-semibold text-navy-900 dark:text-white">
             {labels.name}
             {requiredMark}
             <span className="sr-only"> ({labels.required})</span>
@@ -111,7 +111,7 @@ export function ContactForm({ labels, services, whatsappNumber, email }: Props) 
         </div>
 
         <div>
-          <label htmlFor={`${id}-clientType`} className="text-sm font-semibold text-navy-900">
+          <label htmlFor={`${id}-clientType`} className="text-sm font-semibold text-navy-900 dark:text-white">
             {labels.clientType}
           </label>
           <select id={`${id}-clientType`} name="clientType" defaultValue="" className={fieldClass}>
@@ -125,7 +125,7 @@ export function ContactForm({ labels, services, whatsappNumber, email }: Props) 
         </div>
 
         <div>
-          <label htmlFor={`${id}-service`} className="text-sm font-semibold text-navy-900">
+          <label htmlFor={`${id}-service`} className="text-sm font-semibold text-navy-900 dark:text-white">
             {labels.service}
           </label>
           <select id={`${id}-service`} name="service" defaultValue="" className={fieldClass}>
@@ -140,7 +140,7 @@ export function ContactForm({ labels, services, whatsappNumber, email }: Props) 
         </div>
 
         <div className="sm:col-span-2">
-          <label htmlFor={`${id}-location`} className="text-sm font-semibold text-navy-900">
+          <label htmlFor={`${id}-location`} className="text-sm font-semibold text-navy-900 dark:text-white">
             {labels.location}
           </label>
           <input
@@ -154,7 +154,7 @@ export function ContactForm({ labels, services, whatsappNumber, email }: Props) 
         </div>
 
         <div className="sm:col-span-2">
-          <label htmlFor={`${id}-message`} className="text-sm font-semibold text-navy-900">
+          <label htmlFor={`${id}-message`} className="text-sm font-semibold text-navy-900 dark:text-white">
             {labels.message}
             {requiredMark}
             <span className="sr-only"> ({labels.required})</span>
@@ -184,14 +184,14 @@ export function ContactForm({ labels, services, whatsappNumber, email }: Props) 
           type="submit"
           name="channel"
           value="email"
-          className="inline-flex items-center justify-center gap-2.5 rounded-lg border border-slate-300 px-6 py-3.5 font-semibold text-navy-900 transition-colors hover:border-navy-900 hover:bg-slate-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy-900"
+          className="inline-flex items-center justify-center gap-2.5 rounded-lg border border-slate-300 dark:border-white/15 px-6 py-3.5 font-semibold text-navy-900 dark:text-white transition-colors hover:border-navy-900 dark:hover:border-white/40 hover:bg-slate-50 dark:hover:bg-white/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy-900"
         >
           <MailIcon className="size-5" />
           {labels.submitEmail}
         </button>
       </div>
 
-      <p className="mt-5 text-xs leading-relaxed text-slate-500">{labels.privacy}</p>
+      <p className="mt-5 text-xs leading-relaxed text-slate-500 dark:text-slate-400">{labels.privacy}</p>
     </form>
   );
 }

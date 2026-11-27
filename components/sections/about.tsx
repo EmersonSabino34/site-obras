@@ -8,7 +8,7 @@ export function About({ dict }: { dict: Dictionary }) {
   const { about, anchors } = dict;
 
   return (
-    <section id={anchors.about} className="bg-white py-20 sm:py-28">
+    <section id={anchors.about} className="bg-white py-20 sm:py-28 dark:bg-navy-950">
       <Container className="grid gap-14 lg:grid-cols-2 lg:gap-20">
         <div>
           <SectionHeading eyebrow={about.eyebrow} title={about.title} intro={about.text} />
@@ -20,8 +20,8 @@ export function About({ dict }: { dict: Dictionary }) {
                   <CheckIcon className="size-4" strokeWidth={3} />
                 </span>
                 <span>
-                  <span className="block font-display font-bold text-navy-900">{value.title}</span>
-                  <span className="mt-1 block leading-relaxed text-slate-600">{value.text}</span>
+                  <span className="block font-display font-bold text-navy-900 dark:text-white">{value.title}</span>
+                  <span className="mt-1 block leading-relaxed text-slate-600 dark:text-slate-300">{value.text}</span>
                 </span>
               </li>
             ))}
@@ -29,7 +29,7 @@ export function About({ dict }: { dict: Dictionary }) {
         </div>
 
         <div className="reveal relative flex">
-          <div className="relative flex w-full flex-col justify-between overflow-hidden rounded-3xl bg-navy-900 p-8 text-white sm:p-12">
+          <div className="relative flex w-full flex-col justify-between overflow-hidden rounded-3xl bg-navy-900 p-8 text-white sm:p-12 dark:bg-navy-800 dark:ring-1 dark:ring-white/10">
             <div aria-hidden="true" className="bg-blueprint absolute inset-0 opacity-60" />
             <HouseMark className="pointer-events-none absolute -right-16 -bottom-6 w-96 opacity-[0.08]" />
 

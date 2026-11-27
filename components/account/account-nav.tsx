@@ -20,7 +20,7 @@ export function AccountNav({
   ] as const;
 
   return (
-    <div className="flex flex-col gap-3 border-b border-slate-200 pb-4 sm:flex-row sm:items-center sm:justify-between print:hidden">
+    <div className="flex flex-col gap-3 border-b border-slate-200 dark:border-white/10 pb-4 sm:flex-row sm:items-center sm:justify-between print:hidden">
       <nav aria-label={t.area} className="-mx-1 flex gap-1 overflow-x-auto">
         {links.map((link) => (
           <Link
@@ -29,8 +29,8 @@ export function AccountNav({
             aria-current={current === link.key ? "page" : undefined}
             className={`whitespace-nowrap rounded-lg px-3.5 py-2 text-sm font-semibold transition-colors ${
               current === link.key
-                ? "bg-navy-900 text-white"
-                : "text-slate-600 hover:bg-white hover:text-navy-900"
+                ? "bg-navy-900 text-white dark:bg-white/10"
+                : "text-slate-600 dark:text-slate-300 hover:bg-white dark:hover:bg-white/5 hover:text-navy-900 dark:hover:text-white"
             }`}
           >
             {link.label}
@@ -41,7 +41,7 @@ export function AccountNav({
         <input type="hidden" name="lang" value={lang} />
         <button
           type="submit"
-          className="rounded-lg px-3.5 py-2 text-sm font-semibold text-slate-500 transition-colors hover:bg-white hover:text-red-700"
+          className="rounded-lg px-3.5 py-2 text-sm font-semibold text-slate-500 dark:text-slate-400 transition-colors hover:bg-white dark:hover:bg-white/5 hover:text-red-700 dark:hover:text-red-300"
         >
           {t.logout}
         </button>
